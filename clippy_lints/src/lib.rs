@@ -322,6 +322,7 @@ mod ref_option_ref;
 mod ref_patterns;
 mod reference;
 mod regex;
+mod renamed_imports;
 mod repeat_vec_with_capacity;
 mod replace_box;
 mod reserve_after_initialization;
@@ -484,6 +485,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|| Box::new(suspicious_operation_groupings::SuspiciousOperationGroupings)),
         Box::new(|| Box::new(double_parens::DoubleParens)),
         Box::new(|| Box::new(unsafe_removed_from_name::UnsafeNameRemoval)),
+        Box::new(|| Box::new(renamed_imports::RenamedImports)),
         Box::new(|| Box::new(else_if_without_else::ElseIfWithoutElse)),
         Box::new(|| Box::new(int_plus_one::IntPlusOne)),
         Box::new(|| Box::new(formatting::Formatting)),
