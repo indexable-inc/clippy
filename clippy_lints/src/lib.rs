@@ -292,6 +292,7 @@ mod partial_pub_fields;
 mod partialeq_ne_impl;
 mod partialeq_to_none;
 mod pass_by_ref_or_value;
+mod path_segment_repetition;
 mod pathbuf_init_then_push;
 mod pattern_type_mismatch;
 mod permissions_set_readonly_false;
@@ -851,6 +852,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(move |_| Box::new(unused_trait_names::UnusedTraitNames::new(conf))),
         Box::new(|_| Box::new(manual_ignore_case_cmp::ManualIgnoreCaseCmp)),
         Box::new(|_| Box::new(unnecessary_literal_bound::UnnecessaryLiteralBound)),
+        Box::new(|_| Box::new(path_segment_repetition::PathSegmentRepetition::new())),
         Box::new(move |_| Box::new(arbitrary_source_item_ordering::ArbitrarySourceItemOrdering::new(conf))),
         Box::new(|_| Box::new(useless_concat::UselessConcat)),
         Box::new(|_| Box::new(unneeded_struct_pattern::UnneededStructPattern)),
