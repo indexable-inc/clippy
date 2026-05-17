@@ -111,6 +111,7 @@ mod disallowed_types;
 mod doc;
 mod double_parens;
 mod drop_forget_ref;
+mod drop_must_use;
 mod duplicate_mod;
 mod duration_suboptimal_units;
 mod else_if_without_else;
@@ -884,6 +885,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|_| Box::new(byte_char_slices::ByteCharSlice)),
         Box::new(|_| Box::new(manual_assert_eq::ManualAssertEq)),
         Box::new(|_| Box::new(fallible_int_fallback::FallibleIntFallback)),
+        Box::new(|_| Box::new(drop_must_use::DropMustUse)),
         Box::new(move |_| {
             Box::new(magic_number::MagicNumber::new(
                 conf.allowed_magic_numbers.clone(),
