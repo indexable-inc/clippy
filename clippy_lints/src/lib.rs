@@ -126,6 +126,7 @@ mod error_impl_error;
 mod escape;
 mod eta_reduction;
 mod excessive_bools;
+mod excessive_file_length;
 mod excessive_nesting;
 mod exhaustive_items;
 mod exit;
@@ -498,6 +499,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(move || Box::new(nonstandard_macro_braces::MacroBraces::new(conf))),
         Box::new(|| Box::new(asm_syntax::InlineAsmX86AttSyntax)),
         Box::new(|| Box::new(asm_syntax::InlineAsmX86IntelSyntax)),
+        Box::new(move || Box::new(excessive_file_length::ExcessiveFileLength::new(conf))),
         Box::new(move || Box::new(module_file_count::ModuleFileCount::new(conf))),
         Box::new(move || Box::new(module_style::ModStyle::default())),
         Box::new(move || Box::new(disallowed_script_idents::DisallowedScriptIdents::new(conf))),
