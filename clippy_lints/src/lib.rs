@@ -242,6 +242,7 @@ mod missing_fields_in_debug;
 mod missing_inline;
 mod missing_trait_methods;
 mod mixed_read_write_in_expression;
+mod module_file_count;
 mod module_style;
 mod multi_assignments;
 mod multiple_bound_locations;
@@ -497,6 +498,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(move || Box::new(nonstandard_macro_braces::MacroBraces::new(conf))),
         Box::new(|| Box::new(asm_syntax::InlineAsmX86AttSyntax)),
         Box::new(|| Box::new(asm_syntax::InlineAsmX86IntelSyntax)),
+        Box::new(move || Box::new(module_file_count::ModuleFileCount::new(conf))),
         Box::new(move || Box::new(module_style::ModStyle::default())),
         Box::new(move || Box::new(disallowed_script_idents::DisallowedScriptIdents::new(conf))),
         Box::new(|| Box::new(octal_escapes::OctalEscapes)),

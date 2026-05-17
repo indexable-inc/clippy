@@ -719,6 +719,9 @@ define_Conf! {
     /// The maximum size of a file included via `include_bytes!()` or `include_str!()`, in bytes
     #[lints(large_include_file)]
     max_include_file_size: u64 = 1_000_000,
+    /// The maximum number of `.rs` files a module directory can contain
+    #[lints(module_file_count)]
+    max_module_files: u64 = 7,
     /// The maximum number of bool fields a struct can have
     #[lints(struct_excessive_bools)]
     max_struct_bools: u64 = 3,
