@@ -10,3 +10,6 @@ keywords = ["metadata", "lint", "clippy"]
 categories = ["development-tools::testing"]
 
 [workspace]
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

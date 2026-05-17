@@ -10,3 +10,6 @@ version = "0.1.0"
 
 [lints.clippy]
 unnecessary_safety_comment = "deny"
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

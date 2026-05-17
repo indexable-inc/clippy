@@ -8,3 +8,6 @@ publish = false
 
 [dependencies]
 dep-no-mod = { path = "dep_no_mod"}
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

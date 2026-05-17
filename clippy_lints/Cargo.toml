@@ -39,3 +39,7 @@ check-cfg = ['cfg(bootstrap)']
 [package.metadata.rust-analyzer]
 # This crate uses #[feature(rustc_private)]
 rustc_private = true
+
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

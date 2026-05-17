@@ -25,3 +25,7 @@ tar = "0.4.45"
 toml = "0.9.7"
 ureq = { version = "2.2", features = ["json"] }
 walkdir = "2.3"
+
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

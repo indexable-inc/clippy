@@ -7,3 +7,6 @@ publish = false
 
 [dependencies]
 regex = "*"
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

@@ -14,3 +14,6 @@ categories = ["development-tools", "development-tools::cargo-plugins"]
 
 [build-dependencies]
 term = "0.7"
+[package.metadata.ix.inputs]
+compile = ["."]
+build = ["."]

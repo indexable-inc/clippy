@@ -10,3 +10,6 @@ categories = ["development-tools"]
 edition = "2021" # Keep this, for this crate's MSRV to stay low
 
 [dependencies]
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

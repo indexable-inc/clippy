@@ -22,3 +22,6 @@ bare_trait_objects = "allow"
 [workspace.lints.clippy]
 pedantic = "warn"
 similar_names = "allow"
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

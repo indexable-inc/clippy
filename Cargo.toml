@@ -73,3 +73,7 @@ harness = false
 [lints.rust.unexpected_cfgs]
 level = "warn"
 check-cfg = ['cfg(bootstrap)']
+
+[package.metadata.ix.inputs]
+compile = ["."]
+build = ["."]

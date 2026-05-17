@@ -8,3 +8,6 @@ publish = false
 
 [workspace]
 members = ["foo/bar"]
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []

@@ -3,3 +3,6 @@ name = "duplicate_mod"
 edition = "2021"
 publish = false
 version = "0.1.0"
+[package.metadata.ix.inputs]
+compile = ["."]
+build = []
