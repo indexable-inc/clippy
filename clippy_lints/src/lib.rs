@@ -281,6 +281,7 @@ mod non_expressive_names;
 mod non_octal_unix_permissions;
 mod non_send_fields_in_send_ty;
 mod non_std_lazy_statics;
+mod non_trait_imports;
 mod non_zero_suggestions;
 mod nonstandard_macro_braces;
 mod octal_escapes;
@@ -886,6 +887,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|_| Box::new(manual_assert_eq::ManualAssertEq)),
         Box::new(|_| Box::new(fallible_int_fallback::FallibleIntFallback)),
         Box::new(|_| Box::new(drop_must_use::DropMustUse)),
+        Box::new(|_| Box::new(non_trait_imports::NonTraitImports)),
         Box::new(move |_| {
             Box::new(magic_number::MagicNumber::new(
                 conf.allowed_magic_numbers.clone(),
