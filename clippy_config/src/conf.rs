@@ -428,6 +428,14 @@ define_Conf! {
     /// Additional dotfiles (files or directories starting with a dot) to allow
     #[lints(path_ends_with_ext)]
     allowed_dotfiles: Vec<String> = Vec::default(),
+    /// Integer values that are allowed as inline literals without triggering `magic_number`.
+    /// Default: `[0, 1, 2]`.
+    #[lints(magic_number)]
+    allowed_magic_numbers: Vec<i64> = vec![0, 1, 2],
+    /// Float literal strings that are allowed as inline literals without triggering `magic_number`.
+    /// Default: `["0.0", "1.0"]`.
+    #[lints(magic_number)]
+    allowed_magic_floats: Vec<String> = vec!["0.0".to_string(), "1.0".to_string()],
     /// A list of crate names to allow duplicates of
     #[lints(multiple_crate_versions)]
     allowed_duplicate_crates: Vec<String> = Vec::new(),

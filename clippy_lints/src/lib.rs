@@ -196,6 +196,7 @@ mod literal_string_with_formatting_args;
 mod loops;
 mod macro_metavars_in_unsafe;
 mod macro_use;
+mod magic_number;
 mod main_recursion;
 mod manual_abs_diff;
 mod manual_assert;
@@ -883,6 +884,12 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|_| Box::new(byte_char_slices::ByteCharSlice)),
         Box::new(|_| Box::new(manual_assert_eq::ManualAssertEq)),
         Box::new(|_| Box::new(fallible_int_fallback::FallibleIntFallback)),
+        Box::new(move |_| {
+            Box::new(magic_number::MagicNumber::new(
+                conf.allowed_magic_numbers.clone(),
+                conf.allowed_magic_floats.clone(),
+            ))
+        }),
         // add late passes here, used by `cargo dev new_lint`
     ];
     store.late_passes.extend(late_lints);

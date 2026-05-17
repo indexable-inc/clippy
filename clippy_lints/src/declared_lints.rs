@@ -298,6 +298,7 @@ pub static LINTS: &[&::declare_clippy_lint::LintInfo] = &[
     crate::loops::WHILE_LET_ON_ITERATOR_INFO,
     crate::macro_metavars_in_unsafe::MACRO_METAVARS_IN_UNSAFE_INFO,
     crate::macro_use::MACRO_USE_IMPORTS_INFO,
+    crate::magic_number::MAGIC_NUMBER_INFO,
     crate::main_recursion::MAIN_RECURSION_INFO,
     crate::manual_abs_diff::MANUAL_ABS_DIFF_INFO,
     crate::manual_assert::MANUAL_ASSERT_INFO,
