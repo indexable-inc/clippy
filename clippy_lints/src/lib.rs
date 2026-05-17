@@ -372,6 +372,7 @@ mod uninhabited_references;
 mod uninit_vec;
 mod unit_return_expecting_ord;
 mod unit_types;
+mod underscore_in_module_filename;
 mod unnecessary_box_returns;
 mod unnecessary_literal_bound;
 mod unnecessary_map_on_constructor;
@@ -502,6 +503,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|| Box::new(asm_syntax::InlineAsmX86IntelSyntax)),
         Box::new(move || Box::new(excessive_file_length::ExcessiveFileLength::new(conf))),
         Box::new(move || Box::new(module_file_count::ModuleFileCount::new(conf))),
+        Box::new(|| Box::new(underscore_in_module_filename::UnderscoreInModuleFilename::new())),
         Box::new(move || Box::new(module_style::ModStyle::default())),
         Box::new(move || Box::new(disallowed_script_idents::DisallowedScriptIdents::new(conf))),
         Box::new(|| Box::new(octal_escapes::OctalEscapes)),
