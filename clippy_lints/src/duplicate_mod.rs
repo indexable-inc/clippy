@@ -3,6 +3,7 @@ use rustc_ast::ast::{Crate, Inline, Item, ItemKind, ModKind};
 use rustc_errors::MultiSpan;
 use rustc_lint::{EarlyContext, EarlyLintPass, Level, LintContext};
 use rustc_middle::lint::LevelSpec;
+use rustc_session::lint::UnstableLintExpectationId;
 use rustc_session::impl_lint_pass;
 use rustc_span::{FileName, Span};
 use std::collections::BTreeMap;
@@ -51,7 +52,7 @@ impl_lint_pass!(DuplicateMod => [DUPLICATE_MOD]);
 struct Modules {
     local_path: PathBuf,
     spans: Vec<Span>,
-    lint_level_specs: Vec<LevelSpec>,
+    lint_level_specs: Vec<LevelSpec<UnstableLintExpectationId>>,
 }
 
 #[derive(Default)]
