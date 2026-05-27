@@ -350,6 +350,7 @@ mod size_of_in_element_count;
 mod size_of_ref;
 mod slow_vector_initialization;
 mod std_instead_of_core;
+mod string_ip_field;
 mod string_patterns;
 mod strings;
 mod strlen_on_c_strings;
@@ -888,6 +889,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|_| Box::new(fallible_int_fallback::FallibleIntFallback)),
         Box::new(|_| Box::new(drop_must_use::DropMustUse)),
         Box::new(|_| Box::new(non_trait_imports::NonTraitImports)),
+        Box::new(|_| Box::new(string_ip_field::StringIpField)),
         Box::new(move |_| {
             Box::new(magic_number::MagicNumber::new(
                 conf.allowed_magic_numbers.clone(),
