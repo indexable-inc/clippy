@@ -1,3 +1,4 @@
+mod anonymous_tuple_return_type;
 mod duplicate_underscore_argument;
 mod impl_trait_in_params;
 mod misnamed_getters;
@@ -20,6 +21,38 @@ use rustc_middle::ty::TyCtxt;
 use rustc_session::{declare_lint_pass, impl_lint_pass};
 use rustc_span::Span;
 use rustc_span::def_id::{DefIdSet, LocalDefId};
+
+declare_clippy_lint! {
+    /// ### What it does
+    /// Checks for anonymous tuple types in explicit function return types.
+    ///
+    /// ### Why restrict this?
+    /// Tuple fields do not describe what each value means. A named struct gives
+    /// each field a name and makes the return value easier to understand at call
+    /// sites.
+    ///
+    /// ### Example
+    /// ```no_run
+    /// fn dimensions() -> (u32, u32) {
+    ///     (1920, 1080)
+    /// }
+    /// ```
+    /// Use instead:
+    /// ```no_run
+    /// struct Dimensions {
+    ///     width: u32,
+    ///     height: u32,
+    /// }
+    ///
+    /// fn dimensions() -> Dimensions {
+    ///     Dimensions { width: 1920, height: 1080 }
+    /// }
+    /// ```
+    #[clippy::version = "1.92.0"]
+    pub ANONYMOUS_TUPLE_RETURN_TYPE,
+    restriction,
+    "function return type contains an anonymous tuple"
+}
 
 declare_clippy_lint! {
     /// ### What it does
@@ -476,6 +509,7 @@ declare_clippy_lint! {
 declare_lint_pass!(EarlyFunctions => [DUPLICATE_UNDERSCORE_ARGUMENT]);
 
 impl_lint_pass!(Functions => [
+    ANONYMOUS_TUPLE_RETURN_TYPE,
     DOUBLE_MUST_USE,
     IMPL_TRAIT_IN_PARAMS,
     MISNAMED_GETTERS,
@@ -542,6 +576,7 @@ impl<'tcx> LateLintPass<'tcx> for Functions {
     ) {
         let hir_id = cx.tcx.local_def_id_to_hir_id(def_id);
         too_many_arguments::check_fn(cx, kind, decl, hir_id, def_id, self.too_many_arguments_threshold);
+        anonymous_tuple_return_type::check_fn(cx, decl, hir_id, span);
         too_many_lines::check_fn(cx, kind, body, span, def_id, self.too_many_lines_threshold);
         not_unsafe_ptr_arg_deref::check_fn(cx, kind, decl, body, def_id);
         misnamed_getters::check_fn(cx, kind, decl, body, span);
@@ -594,6 +629,7 @@ impl<'tcx> LateLintPass<'tcx> for Functions {
             self.msrv,
         );
         impl_trait_in_params::check_trait_item(cx, item, self.avoid_breaking_exported_api);
+        anonymous_tuple_return_type::check_trait_item(cx, item);
         ref_option::check_trait_item(cx, item, self.avoid_breaking_exported_api);
     }
 
